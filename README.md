@@ -1,85 +1,73 @@
 
 # Budget Tracker CLI
 
-A simple command-line Python application to help users manage their income, expenses, budgets, and spending categories using a local SQLite database and SQLAlchemy ORM.
+A command-line budget tracking application built with Python. It helps users manage expenses and income, categorize financial activities, set budgets, and track spending against set limits — all from the terminal.
+
+---
+
+## Setup Instructions
+
+1. **Clone the repository** 
+    
+    git clone git@github.com:salman254/cli_budget_tracker.git
+    cd budget-tracker-cli
+    
+
+2. **Install dependencies using Pipenv**:
+    
+    pipenv install
+    pipenv shell
+    
+
+3. **Run database migrations**:
+    
+    alembic upgrade head
+    
+
+4. **Seed the database with sample data**:
+    
+    pipenv run python -m db.seed
+    
+
+5. **Run the CLI app**:
+    
+    pipenv run python main.py
+    
+
+---
 
 ## Features
 
-- View categories created for a user
-- Add new transactions with type, category, and amount
-- View all budget entries per category and period
+- View all spending categories
+- Add new transactions (income or expense)
 - View all recorded transactions
-- View budget status: compare spending against budget and get status
+- Set and view budgets by category and period
+- Compare spending vs. budget with reporting
+- Local database powered by SQLite
 
-## Technologies
+---
+
+## Technologies Used
 
 - Python 3
-- SQLAlchemy ORM
-- Alembic for database migrations
-- SQLite (local database)
-- Pipenv for dependency management
+- SQLAlchemy (ORM)
+- Alembic (Migrations)
+- SQLite (Local storage)
+- Pipenv (Virtual environment and package manager)
 
-## Project Structure
+---
 
-cli-budget-tracker/
-├── lib/
-│   ├── cli.py              # Main CLI menu and routing
-│   ├── category.py         # View categories
-│   ├── transaction.py      # Add and view transactions
-│   └── budget.py           # View budgets and report status
-├── db/
-│   ├── models.py           # ORM models and relationships
-│   ├── seed.py             # Pre-populates the database
-│   └── migrations/         # Alembic migration files
-├── main.py                 # Entry point to run the CLI
-├── Pipfile                 # Pipenv dependencies
-└── README.md               # Project documentation
+## Support / Contact
 
-## How to Run
+For issues, questions, or suggestions, feel free to reach out:
 
-1. Install dependencies:
+- Email: Salmaanmohamed700@gmail.com
+- GitHub: Salmaanmohamed700@gmail.com
 
-    pipenv install
+---
 
-2. Initialize the database:
+## License
 
-    alembic upgrade head
-
-3. Seed sample data:
-
-    pipenv run python -m db.seed
-
-4. Launch the CLI:
-
-    pipenv run python main.py
-
-## CLI Menu Options
-
-1. **View Categories** – Lists all categories associated with the user.
-2. **Add Transaction** – Add an income or expense, assign it to a category.
-3. **View Budgets** – Show all budget entries with category and amount.
-4. **View Transactions** – Lists all user transactions with basic details.
-5. **View Budget Reports** – Compares actual spending with the budget.
-6. **Exit** – Ends the program.
-
-## Sample CLI Output
-
-Welcome to Budget Tracker CLI
-
-1. View Categories
-2. Add Transaction
-3. View Budgets
-4. View Transactions
-5. View Budget Reports
-6. Exit
-
-Select an option: 1
-
-Categories:
-ID: 1 | Name: Groceries
-ID: 2 | Name: Salary
-
-Press Enter to return to the main menu...
+This project is licensed under the MIT License.
 
 
-LICENSE - MIT.
