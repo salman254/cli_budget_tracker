@@ -4,6 +4,8 @@ from sqlalchemy.orm import sessionmaker
 from lib.category import view_categories
 from lib.transaction import add_transaction, view_transactions
 from lib.budget import view_budgets
+from lib.budget import report_budget_status
+
 
 engine = create_engine("sqlite:///db/budget.db")
 Session = sessionmaker(bind=engine)
@@ -18,7 +20,9 @@ def main_menu():
         print("2. Add Transaction")
         print("3. View Budgets")
         print("4. View Transactions")
-        print("5. Exit")
+        print("5. View Budget Reports")
+        print("6. Exit")
+
 
         choice = input("Select an option: ")
 
@@ -31,7 +35,10 @@ def main_menu():
         elif choice == "4":
             view_transactions(session, user)
         elif choice == "5":
+                report_budget_status(session, user)
+        elif choice == "6":
             print("Goodbye!")
             break
+
         else:
             print("Invalid choice. Please try again.")
