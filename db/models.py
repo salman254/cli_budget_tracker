@@ -3,6 +3,7 @@ from sqlalchemy.orm import declarative_base, relationship
 import enum
 
 Base = declarative_base()
+
 class User(Base):
     __tablename__ = "users"
 
@@ -49,7 +50,6 @@ class Transaction(Base):
 
     user = relationship("User", back_populates="transactions")
     category = relationship("Category", back_populates="transactions")
-    note = relationship("Note", back_populates="transaction", uselist=False, cascade="all, delete")
 
     def __repr__(self):
         return f"<Transaction(id={self.id}, title='{self.title}', amount={self.amount}, type={self.type})>"
@@ -68,15 +68,3 @@ class Budget(Base):
 
     def __repr__(self):
         return f"<Budget(id={self.id}, amount={self.amount}, period='{self.period}')>"
-
-class Note(Base):
-    __tablename__ = "notes"
-
-    id = Column(Integer, primary_key=True)
-    content = Column(Text)
-    transaction_id = Column(Integer, ForeignKey("transactions.id"), nullable=False, unique=True)
-
-    transaction = relationship("Transaction", back_populates="note")
-
-    def __repr__(self):
-        return f"<Note(id={self.id}, transaction_id={self.transaction_id})>"
