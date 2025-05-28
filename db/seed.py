@@ -1,13 +1,12 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from db.models import Base, User, Category, Transaction, Budget, Note, TransactionType
+from db.models import Base, User, Category, Transaction, Budget, TransactionType
 from datetime import date
 
 engine = create_engine("sqlite:///db/budget.db")
 Session = sessionmaker(bind=engine)
 session = Session()
 
-session.query(Note).delete()
 session.query(Transaction).delete()
 session.query(Budget).delete()
 session.query(Category).delete()
@@ -47,8 +46,4 @@ tx2 = Transaction(
 session.add_all([tx1, tx2])
 session.commit()
 
-note1 = Note(content="Used discount voucher", transaction=tx1)
-session.add(note1)
-
-session.commit()
-print("✅ Seed data inserted.")
+print("Seed data inserted.")
